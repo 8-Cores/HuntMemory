@@ -236,10 +236,6 @@ fun MenuContent(
     }
 
     val attachedPid by AttachedProcessRepository.attachedProcessPid.collectAsState()
-    val windowInfo = LocalWindowInfo.current
-    val density = LocalDensity.current
-    val windowHeightDp = with(density) { windowInfo.containerSize.height.toDp() }
-    val isCompactHeight = windowHeightDp < 500.dp
 
     CompositionLocalProvider(LocalOverlayOpacity provides opacity) {
         Scaffold(
