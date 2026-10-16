@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -71,6 +72,7 @@ import com.yervant.huntmem.R
 import com.yervant.huntmem.ui.keyboard.KeyboardType
 import com.yervant.huntmem.ui.keyboard.VirtualTextField
 import com.yervant.huntmem.ui.theme.SuccessEmerald
+import com.yervant.huntmem.ui.theme.Spacing
 
 @Composable
 fun ProcessScreen(
@@ -94,8 +96,8 @@ fun ProcessScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 8.dp, vertical = 4.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp)
+                .padding(Spacing.large),
+            verticalArrangement = Arrangement.spacedBy(Spacing.medium)
         ) {
             // Attached process banner
             AttachedProcessBanner(
@@ -116,13 +118,13 @@ fun ProcessScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                horizontalArrangement = Arrangement.spacedBy(Spacing.small)
             ) {
                 FilterChip(
                     selected = filterType == ProcessFilterType.ALL,
                     onClick = { viewModel.onFilterTypeChanged(ProcessFilterType.ALL) },
                     label = { Text(stringResource(R.string.process_menu_filter_all, counts.first), fontSize = 10.sp, fontWeight = FontWeight.Bold) },
-                    modifier = Modifier.height(30.dp),
+                    modifier = Modifier.heightIn(min = 48.dp),
                     colors = FilterChipDefaults.filterChipColors(
                         selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                         selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -132,7 +134,7 @@ fun ProcessScreen(
                     selected = filterType == ProcessFilterType.USER,
                     onClick = { viewModel.onFilterTypeChanged(ProcessFilterType.USER) },
                     label = { Text(stringResource(R.string.process_menu_filter_user, counts.second), fontSize = 10.sp, fontWeight = FontWeight.SemiBold) },
-                    modifier = Modifier.height(30.dp),
+                    modifier = Modifier.heightIn(min = 48.dp),
                     colors = FilterChipDefaults.filterChipColors(
                         selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                         selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -142,7 +144,7 @@ fun ProcessScreen(
                     selected = filterType == ProcessFilterType.SYSTEM,
                     onClick = { viewModel.onFilterTypeChanged(ProcessFilterType.SYSTEM) },
                     label = { Text(stringResource(R.string.process_menu_filter_system, counts.third), fontSize = 10.sp, fontWeight = FontWeight.SemiBold) },
-                    modifier = Modifier.height(30.dp),
+                    modifier = Modifier.heightIn(min = 48.dp),
                     colors = FilterChipDefaults.filterChipColors(
                         selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                         selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -260,7 +262,7 @@ private fun AttachedProcessBanner(
 
                 IconButton(
                     onClick = onDetach,
-                    modifier = Modifier.size(26.dp)
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
@@ -283,7 +285,7 @@ private fun SearchAndRefreshRow(
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(6.dp)
+        horizontalArrangement = Arrangement.spacedBy(Spacing.small)
     ) {
         VirtualTextField(
             modifier = Modifier.weight(1f),
@@ -304,7 +306,7 @@ private fun SearchAndRefreshRow(
 
         IconButton(
             onClick = onRefreshClicked,
-            modifier = Modifier.size(38.dp)
+            modifier = Modifier.size(48.dp)
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_refresh),
@@ -324,7 +326,7 @@ private fun ProcessList(
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(Spacing.small)
     ) {
         items(
             items = processes,

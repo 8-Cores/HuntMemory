@@ -84,6 +84,7 @@ import com.yervant.huntmem.ui.keyboard.KeyboardType
 import com.yervant.huntmem.ui.theme.FrozenIceCyan
 import com.yervant.huntmem.ui.theme.MonospaceAddressStyle
 import com.yervant.huntmem.ui.theme.MonospaceValueStyle
+import com.yervant.huntmem.ui.theme.Spacing
 import com.yervant.huntmem.ui.theme.TertiaryAmber
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -155,8 +156,8 @@ fun AddressTableTab(context: Context?, dialogCallback: DialogCallback) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 6.dp, vertical = 4.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+            .padding(Spacing.large),
+        verticalArrangement = Arrangement.spacedBy(Spacing.small)
     ) {
         // Lockless Mode Alert Banner
         if (isLockless) {
@@ -269,7 +270,7 @@ fun AddressTableTab(context: Context?, dialogCallback: DialogCallback) {
                             .weight(1f)
                             .fillMaxWidth()
                             .padding(horizontal = 4.dp, vertical = 2.dp),
-                        verticalArrangement = Arrangement.spacedBy(3.dp)
+                        verticalArrangement = Arrangement.spacedBy(Spacing.small)
                     ) {
                         itemsIndexed(
                             items = savedAddressList,
