@@ -121,6 +121,7 @@ import com.yervant.huntmem.ui.keyboard.VirtualTextField
 import com.yervant.huntmem.ui.theme.ComponentStyles
 import com.yervant.huntmem.ui.theme.FrozenIceCyan
 import com.yervant.huntmem.ui.theme.SuccessEmerald
+import com.yervant.huntmem.ui.theme.Spacing
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -185,8 +186,8 @@ fun LuaScriptTab(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = if (isCompactWidth) 4.dp else 6.dp, vertical = if (isCompactHeight) 3.dp else 6.dp),
-        verticalArrangement = Arrangement.spacedBy(if (isCompactHeight) 4.dp else 6.dp)
+            .padding(horizontal = Spacing.small, vertical = Spacing.small),
+        verticalArrangement = Arrangement.spacedBy(Spacing.small)
     ) {
         // Top Toolbar: Status Chip, Script Selector Button, Import/Save, Run/Stop Controls
         if (isCompactWidth) {

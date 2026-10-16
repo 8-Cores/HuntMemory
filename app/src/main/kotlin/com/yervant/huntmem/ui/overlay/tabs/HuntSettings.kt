@@ -85,6 +85,7 @@ import com.yervant.huntmem.backend.ShellProcessProvider
 import com.yervant.huntmem.ui.keyboard.KeyboardType
 import com.yervant.huntmem.ui.keyboard.VirtualTextField
 import com.yervant.huntmem.ui.theme.MonospaceAddressStyle
+import com.yervant.huntmem.ui.theme.Spacing
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -153,8 +154,8 @@ fun HuntSettings(context: Context) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 8.dp, vertical = 4.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+            .padding(Spacing.large),
+        verticalArrangement = Arrangement.spacedBy(Spacing.medium)
     ) {
         // Top Header with Quick Select (ALL/RESET) and Advanced Options Toggle
         Row(
@@ -178,7 +179,7 @@ fun HuntSettings(context: Context) {
                     shape = RoundedCornerShape(4.dp),
                     color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
                     border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outlineVariant),
-                    modifier = Modifier.clickable {
+                    modifier = Modifier.height(48.dp).clickable {
                         if (selectedRegions.size == allRegions.size) {
                             selectedRegions.clear()
                         } else {
@@ -201,7 +202,7 @@ fun HuntSettings(context: Context) {
                     shape = RoundedCornerShape(4.dp),
                     color = if (showAdvancedOptions.value) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f) else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
                     border = BorderStroke(0.5.dp, if (showAdvancedOptions.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant),
-                    modifier = Modifier.clickable { showAdvancedOptions.value = !showAdvancedOptions.value }
+                    modifier = Modifier.height(48.dp).clickable { showAdvancedOptions.value = !showAdvancedOptions.value }
                 ) {
                     Row(
                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
@@ -238,8 +239,8 @@ fun HuntSettings(context: Context) {
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
             ) {
                 Column(
-                    modifier = Modifier.padding(6.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    modifier = Modifier.padding(Spacing.large),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.small)
                 ) {
                     // Row 1: Scan Engine 3-way Segmented Selector
                     Row(

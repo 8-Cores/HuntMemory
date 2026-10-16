@@ -122,6 +122,7 @@ import com.yervant.huntmem.ui.overlay.tabs.ProcessViewModel
 import com.yervant.huntmem.ui.theme.ComponentStyles
 import com.yervant.huntmem.ui.theme.HuntMemTheme
 import com.yervant.huntmem.ui.theme.SuccessEmerald
+import com.yervant.huntmem.ui.theme.Spacing
 import kotlin.time.Duration.Companion.milliseconds
 
 val LocalOverlayOpacity = androidx.compose.runtime.compositionLocalOf { OverlayPreferences.DEFAULT_OVERLAY_OPACITY }
@@ -258,7 +259,7 @@ fun MenuContent(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp, vertical = if (isCompactHeight) 2.dp else 4.dp),
+                        .padding(horizontal = Spacing.large, vertical = Spacing.small),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -297,7 +298,7 @@ fun MenuContent(
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.small)
                     ) {
                         // Quick Opacity Selector Chip
                         Surface(
@@ -335,13 +336,13 @@ fun MenuContent(
                         // Window Close button
                         IconButton(
                             onClick = onClose,
-                            modifier = Modifier.size(28.dp)
+                            modifier = Modifier.size(48.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 contentDescription = stringResource(id = R.string.overlay_ui_close_menu_icon_description),
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.size(18.dp)
+                                modifier = Modifier.size(24.dp)
                             )
                         }
                     }
@@ -352,7 +353,7 @@ fun MenuContent(
                     selectedTabIndex = selectedTab,
                     containerColor = Color.Transparent,
                     contentColor = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.height(if (isCompactHeight) 30.dp else 38.dp)
+                    modifier = Modifier.height(48.dp)
                 ) {
                     tabs.forEachIndexed { index, tabItem ->
                         val isSelected = selectedTab == index
@@ -362,16 +363,16 @@ fun MenuContent(
                             text = {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(if (isCompactHeight) 3.dp else 5.dp)
+                                    horizontalArrangement = Arrangement.spacedBy(Spacing.small)
                                 ) {
                                     Icon(
                                         imageVector = tabItem.icon,
                                         contentDescription = null,
-                                        modifier = Modifier.size(if (isCompactHeight) 14.dp else 16.dp)
+                                        modifier = Modifier.size(20.dp)
                                     )
                                     Text(
                                         text = stringResource(id = tabItem.titleRes),
-                                        fontSize = if (isCompactHeight) 9.5.sp else 10.sp,
+                                        style = MaterialTheme.typography.labelMedium,
                                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis

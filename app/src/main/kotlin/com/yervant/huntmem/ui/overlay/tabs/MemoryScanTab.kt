@@ -51,6 +51,7 @@ import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -116,6 +117,7 @@ import com.yervant.huntmem.ui.keyboard.VirtualTextField
 import com.yervant.huntmem.ui.theme.ComponentStyles
 import com.yervant.huntmem.ui.theme.MonospaceAddressStyle
 import com.yervant.huntmem.ui.theme.MonospaceValueStyle
+import com.yervant.huntmem.ui.theme.Spacing
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -392,7 +394,7 @@ fun MemoryMenu(
                 edgePadding = 4.dp,
                 containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f),
                 contentColor = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().height(36.dp)
+                modifier = Modifier.fillMaxWidth().height(48.dp)
             ) {
                 tabs.forEachIndexed { index, tab ->
                     val isSelected = selectedTabIndex.intValue == index
@@ -421,7 +423,7 @@ fun MemoryMenu(
                                                 selectedTabIndex.intValue--
                                             }
                                         },
-                                        modifier = Modifier.size(18.dp)
+                                        modifier = Modifier.size(48.dp)
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.Close,
@@ -437,7 +439,7 @@ fun MemoryMenu(
                 }
                 IconButton(
                     onClick = { addTab(context) },
-                    modifier = Modifier.size(32.dp)
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
@@ -631,8 +633,8 @@ private fun MatchesTable(
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(6.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+            modifier = Modifier.fillMaxSize().padding(Spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(Spacing.small)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -648,16 +650,16 @@ private fun MatchesTable(
                 if (matches.isNotEmpty()) {
                     Button(
                         onClick = onCopyAllMatchesToAddressTable,
-                        modifier = Modifier.height(26.dp),
+                        modifier = Modifier.height(40.dp),
                         contentPadding = PaddingValues(horizontal = 6.dp, vertical = 0.dp),
-                        shape = RoundedCornerShape(4.dp),
+                        shape = RoundedCornerShape(20.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primaryContainer,
                             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     ) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, modifier = Modifier.size(12.dp))
-                        Spacer(modifier = Modifier.width(3.dp))
+                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.width(Spacing.small))
                         Text(stringResource(R.string.memory_menu_copy_all_button), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                     }
                 }
@@ -669,17 +671,20 @@ private fun MatchesTable(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(Spacing.small)) {
+                        Icon(imageVector = Icons.Default.SearchOff, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(24.dp))
+                        Text(
                         text = stringResource(R.string.memory_menu_no_matches_placeholder),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                         textAlign = TextAlign.Center,
                         lineHeight = 16.sp
                     )
+                    }
                 }
             } else {
                 LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(3.dp),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.small),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     items(items = matches, key = { match -> match.id }) { match ->
@@ -706,10 +711,10 @@ private fun MatchItem(
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)),
         border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)),
-        shape = RoundedCornerShape(4.dp)
+        shape = RoundedCornerShape(8.dp)
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).fillMaxWidth(),
+            modifier = Modifier.padding(Spacing.medium).fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -797,8 +802,8 @@ private fun MatchesSetting(
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
     ) {
         Column(
-            modifier = Modifier.padding(6.dp).verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+            modifier = Modifier.padding(Spacing.medium).verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(Spacing.medium)
         ) {
             // Row 1: Scan input + Operator dropdown + Optional Goto
             Row(
@@ -818,7 +823,7 @@ private fun MatchesSetting(
 
                 IconButton(
                     onClick = onOpenSyntaxHelp,
-                    modifier = Modifier.size(34.dp)
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.Info,
@@ -865,8 +870,8 @@ private fun MatchesSetting(
                                 updateMatches(context, currentTab)
                             }
                         },
-                        modifier = Modifier.height(38.dp),
-                        shape = RoundedCornerShape(6.dp),
+                        modifier = Modifier.height(40.dp),
+                        shape = RoundedCornerShape(20.dp),
                         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -930,8 +935,8 @@ private fun CustomDropdown(
         OutlinedButton(
             onClick = { if (enabled) expanded = true },
             enabled = enabled,
-            modifier = Modifier.fillMaxWidth().height(38.dp),
-            shape = RoundedCornerShape(6.dp),
+            modifier = Modifier.fillMaxWidth().height(48.dp),
+            shape = RoundedCornerShape(20.dp),
             colors = ButtonDefaults.outlinedButtonColors(
                 contentColor = MaterialTheme.colorScheme.onSurface,
                 disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
@@ -1002,8 +1007,8 @@ private fun ScanButton(
     Button(
         onClick = onClick,
         enabled = enabled && !isLoading,
-        modifier = modifier.height(38.dp),
-        shape = RoundedCornerShape(6.dp),
+        modifier = modifier.height(40.dp),
+        shape = RoundedCornerShape(20.dp),
         contentPadding = PaddingValues(horizontal = 4.dp, vertical = 0.dp),
         colors = buttonColors
     ) {

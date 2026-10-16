@@ -38,15 +38,15 @@ object ComponentStyles {
      */
     @Immutable
     object StatusCard {
-        val height: Dp = 76.dp
-        val cornerRadius: Dp = 10.dp
+        val height: Dp = 80.dp
+        val cornerRadius: Dp = 12.dp
         val shape: Shape = RoundedCornerShape(cornerRadius)
-        val iconContainerSize: Dp = 32.dp
-        val iconContainerRadius: Dp = 6.dp
+        val iconContainerSize: Dp = 40.dp
+        val iconContainerRadius: Dp = 8.dp
         val iconContainerShape: Shape = RoundedCornerShape(iconContainerRadius)
-        val iconSize: Dp = 18.dp
+        val iconSize: Dp = 20.dp
         val borderWidth: Dp = 1.dp
-        val horizontalPadding: Dp = 10.dp
+        val horizontalPadding: Dp = 16.dp
         val verticalPadding: Dp = 8.dp
     }
 
@@ -55,8 +55,8 @@ object ComponentStyles {
      */
     @Immutable
     object ActionButton {
-        val height: Dp = 52.dp
-        val cornerRadius: Dp = 12.dp
+        val height: Dp = 48.dp
+        val cornerRadius: Dp = 20.dp
         val shape: Shape = RoundedCornerShape(cornerRadius)
         val elevation: Dp = 6.dp
         val iconSize: Dp = 24.dp
@@ -67,13 +67,13 @@ object ComponentStyles {
      */
     @Immutable
     object StatusChip {
-        val cornerRadius: Dp = 6.dp
+        val cornerRadius: Dp = 12.dp
         val shape: Shape = RoundedCornerShape(cornerRadius)
-        val indicatorSize: Dp = 7.dp
-        val horizontalPadding: Dp = 6.dp
-        val verticalPadding: Dp = 3.dp
-        val spacing: Dp = 4.dp
-        val borderWidth: Dp = 0.5.dp
+        val indicatorSize: Dp = 8.dp
+        val horizontalPadding: Dp = 12.dp
+        val verticalPadding: Dp = 8.dp
+        val spacing: Dp = 8.dp
+        val borderWidth: Dp = 1.dp
     }
 
     /**
@@ -81,11 +81,11 @@ object ComponentStyles {
      */
     @Immutable
     object Dialog {
-        val cornerRadius: Dp = 14.dp
+        val cornerRadius: Dp = 28.dp
         val shape: Shape = RoundedCornerShape(cornerRadius)
-        val contentPadding: Dp = 14.dp
-        val cardPaddingHorizontal: Dp = 8.dp
-        val cardPaddingVertical: Dp = 8.dp
+        val contentPadding: Dp = 24.dp
+        val cardPaddingHorizontal: Dp = 16.dp
+        val cardPaddingVertical: Dp = 16.dp
         val minWidth: Dp = 280.dp
         val maxWidth: Dp = 460.dp
         val tonalElevation: Dp = 8.dp

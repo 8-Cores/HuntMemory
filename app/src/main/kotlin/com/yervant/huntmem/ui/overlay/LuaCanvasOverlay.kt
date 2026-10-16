@@ -34,6 +34,8 @@ import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.yervant.huntmem.ui.overlay.tabs.CanvasDrawCommand
 import com.yervant.huntmem.ui.overlay.tabs.LuaUiBridge
 import androidx.compose.runtime.collectAsState
@@ -74,7 +76,7 @@ fun LuaCanvasOverlay(
                     when (cmd) {
                         is CanvasDrawCommand.Text -> {
                             textPaint.color = cmd.color.toArgb()
-                            textPaint.textSize = cmd.size * currentDensity
+                            textPaint.textSize = maxOf(cmd.size * currentDensity, 14.sp.toPx())
                             textPaint.textAlign = cmd.align
                             nativeCanvas.drawText(cmd.text, cmd.x, cmd.y, textPaint)
                         }
@@ -83,7 +85,7 @@ fun LuaCanvasOverlay(
                                 color = cmd.color,
                                 start = Offset(cmd.x1, cmd.y1),
                                 end = Offset(cmd.x2, cmd.y2),
-                                strokeWidth = cmd.strokeWidth * currentDensity
+                                strokeWidth = maxOf(cmd.strokeWidth * currentDensity, 1.dp.toPx())
                             )
                         }
                         is CanvasDrawCommand.Rect -> {
@@ -99,7 +101,7 @@ fun LuaCanvasOverlay(
                                     color = cmd.color,
                                     topLeft = Offset(cmd.x, cmd.y),
                                     size = Size(cmd.width, cmd.height),
-                                    style = Stroke(width = cmd.strokeWidth * currentDensity)
+                                    style = Stroke(width = maxOf(cmd.strokeWidth * currentDensity, 1.dp.toPx()))
                                 )
                             }
                         }
@@ -116,7 +118,7 @@ fun LuaCanvasOverlay(
                                     color = cmd.color,
                                     radius = cmd.radius * currentDensity,
                                     center = Offset(cmd.cx, cmd.cy),
-                                    style = Stroke(width = cmd.strokeWidth * currentDensity)
+                                    style = Stroke(width = maxOf(cmd.strokeWidth * currentDensity, 1.dp.toPx()))
                                 )
                             }
                         }
